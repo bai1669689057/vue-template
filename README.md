@@ -1,4 +1,4 @@
-# hongsheng
+# vue-template
 
 ## Project setup
 ```
