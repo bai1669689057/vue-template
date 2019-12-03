@@ -24,12 +24,9 @@
             </div>
             <!-- 右侧 -->
             <ul class="list">
-              <li class="jqid"><a href="#">首页</a></li>
-              <li class="jqid"><a href="#" @click="handleCenter()">课程中心</a></li>
-              <li class="jqid"><a href="#"> 题库练习</a></li>
-              <li class="jqid"><a href="#">新闻中心</a></li>
-              <li class="jqid"><a href="#">直播</a></li>
-              <li class="jqid jqclass"><a href="#"> 联系我们</a></li>
+              <li class="jqid" v-for="(menu,index) in menuList" :key="index">
+                <a href="javascript:void(0);" :class="{'selected' : currentMune === menu.url}" @click="handleMenu(menu.url)">{{menu.title}}</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -40,9 +37,21 @@
 
 <script>
 export default {
+  data(){
+    return {
+      menuList:[{url:'/index',title:'首页'},{url:'/classCenter',title:'课程中心'},{url:'/practiceCenter',title:'题库练习'},{url:'/newsCenter',title:'新闻中心'},{url:'/liveCenter',title:'直播'},{url:'/about',title:'联系我们'}]
+    }
+  },
+  computed: {
+  // 计算属性 相当于一个方法 拿到当前路由
+   currentMune () {
+      console.log(this.$route.path)
+      return '/' + this.$route.path.split('/').slice(1, 2).join('/')
+    },
+  },
   methods: {
-    handleCenter () {
-      this.$router.push({ path: '/list', query: {} })
+    handleMenu (url) {
+      this.$router.push({ path: url, query: {} })
     }
   }
 }
@@ -118,20 +127,19 @@ export default {
     display: flex;
     align-items: center;
   }
-  /* .jqid { */
-    /* padding: 26px 0;
-    margin: 0 20px; */
-    /* margin: 26px 20px; */
-    /* border-bottom: 3px solid #ffffff; */
-    /* background: red; */
-  /* } */
   .jqid a{
-      display: inline-block;
-      padding: 24px 0;
+    display: inline-block;
+    // padding: 24px 0;
     margin: 0 20px;
     color: #333333;
+    height: 70px;
+    line-height: 70px;
   }
   .jqid a:hover{
+    color: #02404f;
+    border-bottom: 3px solid #02404f;
+  }
+  .jqid a.selected{
     color: #02404f;
     border-bottom: 3px solid #02404f;
   }

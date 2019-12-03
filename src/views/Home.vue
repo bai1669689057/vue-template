@@ -23,9 +23,9 @@ export default {
     this.$nextTick(() => {
       const data = { username: 'zs', password: '123456' }
       // 数据请求
-      this.$api.login(data).then((res) => {
-        console.log(res)
-      })
+      // this.$api.login(data).then((res) => {
+      //   console.log(res)
+      // })
     })
   }
 }
@@ -37,7 +37,7 @@ export default {
 }
 #nav {
   width: 100%;
-  height: 100px;
+  height: 106px;
   padding: 30px;
 
   a {
